@@ -8,9 +8,11 @@ contract RelayerSubscription is Ownable {
 
     uint256 immutable SUB_DURATION = 30 days;
 
-    mapping(string => uint256) subscriptionInfos; // user ID to subscription expiry timestamp
+    mapping(bytes32 => string) public userIds;
 
-    event NewSubscription(string indexed userId, uint256 indexed expiry);
+    mapping(string => uint256) public subscriptionInfos; // user ID to subscription expiry timestamp
+
+    event NewSubscription(bytes32 indexed userId, uint256 indexed expiry);
 
     constructor(uint256 _subscriptionPrice) Ownable(msg.sender) {
         subscriptionPrice = _subscriptionPrice;
@@ -19,14 +21,23 @@ contract RelayerSubscription is Ownable {
     function subscribe(string calldata _userId) external payable {
         require(msg.value == subscriptionPrice, "Invalid amount sent");
         require(!isSubscribed(_userId), "User is already subscribed");
+
         uint256 expiry = block.timestamp + SUB_DURATION;
+
         subscriptionInfos[_userId] = expiry;
-        emit NewSubscription(_userId, expiry);
+        bytes32 id = keccak256(bytes(_userId));
+
+        userIds[id] = _userId;
+
+        emit NewSubscription(id, expiry);
     }
 
     function isSubscribed(string calldata _userId) public view returns (bool) {
         uint256 subInfo = subscriptionInfos[_userId];
-        return subInfo < block.timestamp;
+        if (subInfo ==  0) {
+            return false;
+        }
+        return subInfo > block.timestamp;
     }
 
     function setSubscriptionPrice(uint256 _newPrice) external onlyOwner {

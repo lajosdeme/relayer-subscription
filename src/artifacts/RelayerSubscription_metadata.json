@@ -43,9 +43,9 @@
 				"inputs": [
 					{
 						"indexed": true,
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "userId",
-						"type": "string"
+						"type": "bytes32"
 					},
 					{
 						"indexed": true,
@@ -142,6 +142,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "subscriptionInfos",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "subscriptionPrice",
 				"outputs": [
@@ -165,6 +184,25 @@
 				"name": "transferOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "userIds",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -246,11 +284,11 @@
 			]
 		},
 		"src/RelayerSubscription.sol": {
-			"keccak256": "0xe82b44618fd6b672d3c83e0149a6c6aeb6a60011a96c6bf5d6be429de4200050",
+			"keccak256": "0x3e482a5fafa0b1fa3f6d5a74a93b41f24748bf8a8b9dbdf9130ed62a71deee7b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cf5ade8ea87a6e6b455cdd6221cede4e4221f647f8ce9cb6d6dcd9b15df122e4",
-				"dweb:/ipfs/QmQHQmruz4eJbzhzy8SNY57frm7MkxaHV63VZAf4Sp5Ugd"
+				"bzz-raw://1ba39e8a0673971d1f4daf44ae1319320ad847b04e7728e5bd79c20b5e740ebb",
+				"dweb:/ipfs/QmdKPTL8Hj9vG1LecmspT6rCSnCXw2BcsczLCD2yrGchax"
 			]
 		}
 	},
